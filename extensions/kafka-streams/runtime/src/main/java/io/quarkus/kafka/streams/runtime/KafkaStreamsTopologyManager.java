@@ -64,7 +64,7 @@ public class KafkaStreamsTopologyManager {
 
             return;
         }
-
+        System.out.println("#### Topo" + topology);
         executor = Executors.newSingleThreadExecutor();
 
         this.topology = topology;
@@ -107,6 +107,7 @@ public class KafkaStreamsTopologyManager {
                 .map(Collections::unmodifiableSet)
                 .orElseGet(Collections::emptySet);
 
+        LOGGER.error("#### topo" + topology);
         streams = new KafkaStreams(topology.get(), streamsProperties);
 
         executor.execute(() -> {
